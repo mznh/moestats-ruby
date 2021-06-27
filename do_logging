@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd `dirname $0
+cd `dirname $0`
 
-./fetch_server_status.rb >> server_log
-
+date_str=$(date '+%Y%m%d')
+file_name="moe_server_$date_str.log"
+./fetch_server_status.rb >> log/$file_name

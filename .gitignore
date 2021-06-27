@@ -1,3 +1,7 @@
+# for log
+/log/*.log
+
+# for ruby
 *.gem
 *.rbc
 /.config
