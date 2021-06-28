@@ -63,7 +63,8 @@ class MoEServerViewer
       time_info = {
         :timestamp => now.to_i,
         :date => now.strftime("%Y%m%d"),
-        :time => now.strftime("%H:%M")
+        :hour => now.strftime("%H"),
+        :record_time => Time.at(now.to_i).to_s,
       }
 
       ## server info 
