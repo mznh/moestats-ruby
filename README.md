@@ -5,7 +5,7 @@ Sharlさんの https://github.com/sharl/moestats のコア部分だけRubyに移
 
 
 ## todo
---今これVPS上で動かしてるけど、CloudFunctionとかに移したいね--
+~~今これVPS上で動かしてるけど、CloudFunctionとかに移したいね~~
 
 GCPに移行して試験運用中
 
