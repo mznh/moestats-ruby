@@ -1,0 +1,15 @@
+#!/bin/bash
+set  -x
+
+# 安そうだから gen1 にする。様子見
+# そのうちgen2に固定されるっぽいので要対応
+
+source <(./contrib/set_env.sh )
+
+gcloud functions deploy $FUNCTION_NAME \
+--env-vars-file env.yaml \
+--region=us-central1 \
+--memory=128M \
+--runtime=ruby32 \
+--entry-point=trigger_by_pubsub \
+--trigger-topic=$TOPIC_NAME
