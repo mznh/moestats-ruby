@@ -4,7 +4,7 @@ require "bundler/setup"
 require "functions_framework"
 require "base64"
 require 'dotenv'
-require 'date'
+require 'time'
 
 require "google/cloud/secret_manager/v1"
 require "google/cloud/storage"
@@ -29,12 +29,12 @@ def fetch_and_write(logger)
   gcs_client = Google::Cloud::Storage.new(project_id: ENV['PROJECT_ID'])
   bucket = gcs_client.bucket(ENV['BUCKET_NAME'])
   ms = MoEServerStatFetcher.new()
-
-  dt = DateTime.now.strftime("%Y%m%dT%H%M%S")
+  now = Time.now
+  dt = now.strftime("%Y%m%dT%H%M%S")
   file_path = "#{ENV['GCS_RAW_PATH']}/raw_#{dt}.csv"
 
   header_path = ENV['GCS_HEADER_PATH']
-  composed_dt = DateTime.now.strftime("%Y%m")
+  composed_dt = now.strftime("%Y%m")
   compoesd_file_path = "composed_test/#{composed_dt}.csv"
   # 本番切替時にはこれに変える
   #compoesd_file_path = "#{GCS_COMPOSED_PATH}/#{composed_dt}.csv"
