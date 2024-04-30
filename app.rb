@@ -35,14 +35,13 @@ def fetch_and_write(logger)
 
   header_path = ENV['GCS_HEADER_PATH']
   composed_dt = now.strftime("%Y%m")
-  compoesd_file_path = "composed_test/#{composed_dt}.csv"
-  # 本番切替時にはこれに変える
-  #compoesd_file_path = "#{GCS_COMPOSED_PATH}/#{composed_dt}.csv"
-
+  compoesd_file_path = "#{ENV['GCS_COMPOSED_PATH']}/#{composed_dt}.csv"
   begin
     # fetch data and convert to csv
     server_data = ms.fetch_server_info
     server_text = result_to_csv(server_data)
+    logger.info(server_text)
+
     # その月のcomposedファイルがなければ作成
     if bucket.find_file(compoesd_file_path).nil? then
       header_file = bucket.file(header_path)
